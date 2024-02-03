@@ -1,0 +1,6 @@
+# IDE
+.idea
+
+# logs
+./docker/nginx/logs
+./docker/mysql/*

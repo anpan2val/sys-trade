@@ -1,0 +1,42 @@
+version: '3'
+services:
+  dev-nginx:
+    container_name: "dev-nginx"
+    build:
+      context: ./docker/nginx
+    depends_on:
+      - dev-app
+    ports:
+      - 80:80
+    volumes:
+      - ./:/src
+
+  dev-app:
+    container_name: "dev-app"
+    build:
+      context: ./docker/app
+    depends_on:
+      - dev-mysql
+    volumes:
+      - ./:/src
+      - /src/node_modules
+      - /src/vendor
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+
+  dev-mysql:
+    image: mysql:8.0.33
+    command: --max_allowed_packet=32505856
+    container_name: "dev-mysql"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=dev
+    ports:
+      - 3306:3306
+
+  dev-redis:
+    image: redis:alpine
+    container_name: "dev-redis"
+    ports:
+      - 16379:6379
