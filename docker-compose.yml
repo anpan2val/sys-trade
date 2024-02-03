@@ -14,7 +14,7 @@ services:
   dev-app:
     container_name: "dev-app"
     build:
-      context: ./docker/app
+      context: ./docker/php
     depends_on:
       - dev-mysql
     volumes:
