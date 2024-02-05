@@ -34,3 +34,8 @@ ADD . /src/storage
 RUN chown -R www-data:www-data /src/storage
 
 ENTRYPOINT [ "bash", "-c", "composer install; npm install; exec php-fpm"]
+ENTRYPOINT [ "bash", "-c", "npm install -D react react-dom"]
+ENTRYPOINT [ "bash", "-c", "npm install -D @vitejs/plugin-react-refresh @vitejs/plugin-react"]
+ENTRYPOINT [ "bash", "-c", "npm install -D typescript @types/react @types/react-dom"]
+ENTRYPOINT [ "bash", "-c", "npm install @mui/material @emotion/react @emotion/styled"]
+ENTRYPOINT [ "bash", "-c", "npm install -D sass"]
