@@ -24,6 +24,12 @@ services:
       - /src/node_modules
       - /src/vendor
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    command:
+        - sh -c "npm install -D react react-dom"
+        - sh -c "npm install -D @vitejs/plugin-react-refresh @vitejs/plugin-react"
+        - sh -c "npm install -D typescript @types/react @types/react-dom"
+        - sh -c "npm install @mui/material @emotion/react @emotion/styled"
+        - sh -c "npm install -D sass"
 
   dev-mysql:
     image: mysql:8.0.33
