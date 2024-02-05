@@ -17,3 +17,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+## Logs
+
+/docker/mysql/*
+/docker/nginx/*
+!/docker/nginx/logs/.gitkeep
