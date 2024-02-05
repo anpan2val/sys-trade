@@ -3,4 +3,5 @@
 
 # logs
 /docker/nginx/logs/*
+!/docker/nginx/logs/.gitkeep
 /docker/mysql/*
