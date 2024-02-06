@@ -7,7 +7,7 @@ services:
     depends_on:
       - dev-app
     ports:
-      - 80:80
+      - "80:80"
     volumes:
       - ./:/src
 
@@ -18,7 +18,7 @@ services:
     depends_on:
       - dev-mysql
     ports:
-        -   5173:5173
+        -   "5173:5173"
     volumes:
       - ./:/src
       - /src/node_modules
@@ -41,10 +41,10 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=dev
     ports:
-      - 3306:3306
+      - "3306:3306"
 
   dev-redis:
     image: redis:alpine
     container_name: "dev-redis"
     ports:
-      - 16379:6379
+      - "16379:6379"
