@@ -23,6 +23,7 @@
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.15.9",
         "@mui/material": "^5.15.7",
+        "@mui/x-charts": "^6.19.4",
         "apexcharts": "^3.45.2",
         "list": "^2.0.19",
         "react-apexcharts": "^1.4.1"

@@ -4,6 +4,7 @@ import {CssBaseline} from '@mui/material'
 import ApexChart from "./ApexChart";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import Dashboard from './components/Dashboard';
 
 // root element
 const root = createRoot(
@@ -24,11 +25,7 @@ const App = () => {
 
     return (
         <>
-            <ThemeProvider theme={theme}>
-                <Button variant="contained" color="primary">
-                    Hello World
-                </Button>
-            </ThemeProvider>
+            <Dashboard />
         </>
     );
 };
