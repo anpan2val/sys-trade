@@ -3,7 +3,6 @@ import {useTheme} from '@mui/material/styles';
 import {LineChart, axisClasses} from '@mui/x-charts';
 import {ChartsTextStyle} from '@mui/x-charts/ChartsText';
 import Title from './Title';
-import {useEffect} from 'react';
 
 // Generate Sales Data
 function createData(
@@ -27,16 +26,6 @@ const data = [
 
 export default function Chart() {
     const theme = useTheme();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('/api/cmc');
-            const data = await response.json();
-            console.log(data);
-        }
-        fetchData();
-
-    }, []);
 
     return (
         <React.Fragment>
