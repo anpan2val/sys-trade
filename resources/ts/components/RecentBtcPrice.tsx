@@ -30,7 +30,7 @@ export default function RecentBtcPrice() {
         ${btcPrice}
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
-        on 15 March, 2019
+
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>
