@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use \App\Libs\NumberFormatter;
 
 class CmcApiController extends Controller
 {
@@ -18,12 +19,12 @@ class CmcApiController extends Controller
             \Log::info('Cache not exist');
             $value = array(
                 'data' => [
-                    'price' => floor(51698.999513739),
-                    'volume_24h' => floor(42135855135.304),
-                    'volume_change_24h' => floor(3.4689 * 10) / 10,
-                    'percent_change_1h' => floor(0.30816671 * 10) / 10,
-                    'percent_change_24h' => floor(3.71978656 * 10) / 10,
-                    'percent_change_7d' => floor(19.89281289 * 10) / 10,
+                    'price' => NumberFormatter::truncateNumber(51698.999513739),
+                    'volume_24h' => NumberFormatter::truncateNumber(42135855135.304),
+                    'volume_change_24h' => NumberFormatter::truncateNumber(3.4689),
+                    'percent_change_1h' => NumberFormatter::truncateNumber(0.30816671),
+                    'percent_change_24h' => NumberFormatter::truncateNumber(3.71978656),
+                    'percent_change_7d' => NumberFormatter::truncateNumber(19.89281289),
                 ],
             );
 
