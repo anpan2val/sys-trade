@@ -8,15 +8,20 @@ use \App\Libs\NumberFormatter;
 
 class CmcApiController extends Controller
 {
+    private function getCacheKey()
+    {
+        return 'cmc_data_' . date('YmdHi');
+    }
+
     public function dummy()
     {
-        $key = 'cmc_data_' . date('YmdHi');
+        $key = $this->getCacheKey();
 
         $value = Cache::get($key);
 
         if (!$value) {
 
-            \Log::info('Cache not exist');
+            \Log::info("Cache not exist KEY:{$key}");
             $value = array(
                 'data' => [
                     'price' => NumberFormatter::truncateNumber(51698.999513739),
@@ -31,9 +36,10 @@ class CmcApiController extends Controller
             $value = json_encode($value, true);
 
             Cache::set($key, $value, 60);
+
         } else {
 
-            \Log::info('Cache exist');
+            \Log::info("Cache exist KEY:{$key}");
         }
 
         return $value;
@@ -42,20 +48,38 @@ class CmcApiController extends Controller
 
     public function index()
     {
-        $res = Http::withHeaders([
-            'X-CMC_PRO_API_KEY' => config('config_cmc.cmc_apikey'),
-        ])->get(config('config_cmc.cmc_currency_latest_uri'))->json();
+        $key = $this->getCacheKey();
 
-        return response()->json(
-            [
-                'data' =>
-                    ['price' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['price'])],
-                ['volume_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_24h'])],
-                ['volume_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_change_24h'])],
-                ['percent_change_1h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_1h'])],
-                ['percent_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_24h'])],
-                ['percent_change_7d' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_7d'])],
-            ]
-        );
+        $value = Cache::get($key);
+
+        if (!$value) {
+
+            \Log::info("Cache not exist KEY:{$key}");
+
+            $res = Http::withHeaders([
+                'X-CMC_PRO_API_KEY' => config('config_cmc.cmc_apikey'),
+            ])->get(config('config_cmc.cmc_currency_latest_uri'))->json();
+
+            $value = array(
+                'data' => [
+                    'price' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['price']),
+                    'volume_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_24h']),
+                    'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_change_24h']),
+                    'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_1h']),
+                    'percent_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_24h']),
+                    'percent_change_7d' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_7d']),
+                ],
+            );
+
+            $value = json_encode($value, true);
+
+            Cache::set($key, $value, 60);
+
+        } else {
+
+            \Log::info("Cache exist KEY:{$key}");
+        }
+
+        return $value;
     }
 }
