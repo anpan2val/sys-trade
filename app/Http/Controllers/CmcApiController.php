@@ -49,12 +49,12 @@ class CmcApiController extends Controller
         return response()->json(
             [
                 'data' =>
-                    ['price' => $res['data'][0]['quote']['USD']['price']],
-                ['volume_24h' => $res['data'][0]['quote']['USD']['volume_24h']],
-                ['volume_change_24h' => $res['data'][0]['quote']['USD']['volume_change_24h']],
-                ['percent_change_1h' => $res['data'][0]['quote']['USD']['percent_change_1h']],
-                ['percent_change_24h' => $res['data'][0]['quote']['USD']['percent_change_24h']],
-                ['percent_change_7d' => $res['data'][0]['quote']['USD']['percent_change_7d']],
+                    ['price' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['price'])],
+                ['volume_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_24h'])],
+                ['volume_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_change_24h'])],
+                ['percent_change_1h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_1h'])],
+                ['percent_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_24h'])],
+                ['percent_change_7d' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_7d'])],
             ]
         );
     }
