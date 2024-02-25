@@ -8,7 +8,7 @@ function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
 
-export default function RecentBtcPrice() {
+export default function RecentPriceBtc() {
 
     const [btcPrice, setBtcPrice] = useState('Loading...');
 

@@ -2,22 +2,22 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from './Title';
-import {useEffect, useState} from 'react';
+import {useEffect, useState } from 'react';
 
 function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
 
-export default function RecentLuncPrice() {
+export default function RecentPriceUstc() {
 
-    const [luncPrice, setLuncPrice] = useState('Loading...');
+    const [ustcPrice, setUstcPrice] = useState('Loading...');
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('/api/cmc');
             const data = await response.json();
             console.log(data);
-            setLuncPrice(data['data']['price']);
+            setUstcPrice(data['data']['price']);
         }
         fetchData();
 
@@ -25,9 +25,9 @@ export default function RecentLuncPrice() {
 
     return (
         <React.Fragment>
-            <Title>Lunc Price</Title>
+            <Title>USTC Price</Title>
             <Typography component="p" variant="h4">
-                ${luncPrice}
+                ${ustcPrice}
             </Typography>
             <Typography color="text.secondary" sx={{ flex: 1 }}>
 

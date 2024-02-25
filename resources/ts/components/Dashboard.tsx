@@ -21,9 +21,9 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-import RecentLuncPrice from './RecentLuncPrice';
-import RecentUstcPrice from "./RecentUstcPrice";
-import RecentBtcPrice from "./RecentBtcPrice";
+import RecentPriceLunc from './RecentPriceLunc';
+import RecentPriceUstc from "./RecentPriceUstc";
+import RecentPriceBtc from "./RecentPriceBtc";
 
 function Copyright(props: any) {
   return (
@@ -180,6 +180,7 @@ export default function Dashboard() {
                           height: 240,
                       }}
                   >
+                      {/* BTC Chart */}
                       <Chart />
                   </Paper>
               </Grid>
@@ -193,7 +194,7 @@ export default function Dashboard() {
                           height: 240,
                       }}
                   >
-                      <RecentBtcPrice />
+                      <RecentPriceBtc />
                   </Paper>
               </Grid>
               {/* Chart */}
@@ -206,6 +207,7 @@ export default function Dashboard() {
                     height: 240,
                   }}
                 >
+                  {/* LUNC Chart */}
                   <Chart />
                 </Paper>
               </Grid>
@@ -219,7 +221,7 @@ export default function Dashboard() {
                     height: 240,
                   }}
                 >
-                  <RecentLuncPrice />
+                  <RecentPriceLunc />
                 </Paper>
               </Grid>
               {/* Recent Orders */}
@@ -237,6 +239,7 @@ export default function Dashboard() {
                           height: 240,
                       }}
                   >
+                      {/* USTC Chart */}
                       <Chart />
                   </Paper>
               </Grid>
@@ -250,7 +253,7 @@ export default function Dashboard() {
                           height: 240,
                       }}
                   >
-                      <RecentUstcPrice />
+                      <RecentPriceUstc />
                   </Paper>
               </Grid>
             </Grid>
