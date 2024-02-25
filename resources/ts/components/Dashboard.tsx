@@ -24,6 +24,7 @@ import Orders from './Orders';
 import RecentPriceLunc from './RecentPriceLunc';
 import RecentPriceUstc from "./RecentPriceUstc";
 import RecentPriceBtc from "./RecentPriceBtc";
+import RecentChartBtc from "./RecentChartBtc";
 
 function Copyright(props: any) {
   return (
@@ -181,7 +182,7 @@ export default function Dashboard() {
                       }}
                   >
                       {/* BTC Chart */}
-                      <Chart />
+                      <RecentChartBtc />
                   </Paper>
               </Grid>
               {/* Recent Deposits */}

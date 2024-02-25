@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CmcApiController;
+use App\Http\Controllers\CmcApiQuotesHistoricalController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Route::get('/cmc', [CmcApiController::class, 'index']);
 Route::get('/cmc', [CmcApiController::class, 'dummy']);
+Route::get('/cmc_btc', [CmcApiQuotesHistoricalController::class, 'test']);
