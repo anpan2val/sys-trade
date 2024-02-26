@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use \App\Libs\NumberFormatter;
+use \App\Libs\DateFormatter;
 
 /**
  * Class CmcApiQuotesHistoricalController
@@ -32,7 +32,7 @@ class CmcApiQuotesHistoricalController extends Controller
         $historicalQuotes = array();
         foreach ($res['data']['1']['quotes'] as $quote) {
             $historicalQuotes[] = array(
-                'timestamp' => $quote['timestamp'], // '2024-02-25T13:55:00.000Z',
+                'timestamp' => DateFormatter::formatDateTimeToHourMinute($quote['timestamp']), // '2024-02-25T13:55:00.000Z' -> '13:55'
                 'data' => [
                     'percent_change_1h' => $quote['quote']['USD']['percent_change_1h'], // 0.015994713325,
                     'percent_change_24h' => $quote['quote']['USD']['percent_change_24h'], // 0.989630363924,
