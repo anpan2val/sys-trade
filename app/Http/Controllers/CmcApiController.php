@@ -48,6 +48,11 @@ class CmcApiController extends Controller
 
     public function index()
     {
+
+        $id_btc = 1;
+        $id_lunc = 4172;
+        $id_ustc = 7129;
+
         $key = $this->getCacheKey();
 
         $value = Cache::get($key);
@@ -58,21 +63,45 @@ class CmcApiController extends Controller
 
             $res = Http::withHeaders([
                 'X-CMC_PRO_API_KEY' => config('config_cmc.cmc_apikey'),
-            ])->get(config('config_cmc.cmc_currency_latest_uri'))->json();
+            ])->get(config('config_cmc.cmc_quotes_latest_uri'),
+                [
+                    'id' => "{$id_btc},{$id_lunc},{$id_ustc}", // 1=BTC, 4172=LUNC, 7129=USTC
+                ]
+            )->json();
+
+
 
             $value = array(
-                'data' => [
-                    'price' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['price']),
-                    'volume_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_24h']),
-                    'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['volume_change_24h']),
-                    'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_1h']),
-                    'percent_change_24h' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_24h']),
-                    'percent_change_7d' => NumberFormatter::truncateNumber($res['data'][0]['quote']['USD']['percent_change_7d']),
+                'data_BTC' => [
+                    'price' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['price']),
+                    'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['volume_24h']),
+                    'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['volume_change_24h']),
+                    'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['percent_change_1h']),
+                    'percent_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['percent_change_24h']),
+                    'percent_change_7d' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['percent_change_7d']),
+                ],
+                'data_LUNC' => [
+                    'price' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['price'], 5),
+                    'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['volume_24h']),
+                    'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['volume_change_24h']),
+                    'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['percent_change_1h']),
+                    'percent_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['percent_change_24h']),
+                    'percent_change_7d' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['percent_change_7d']),
+                ],
+                'data_USTC' => [
+                    'price' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['price'], 3),
+                    'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['volume_24h']),
+                    'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['volume_change_24h']),
+                    'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['percent_change_1h']),
+                    'percent_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['percent_change_24h']),
+                    'percent_change_7d' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['percent_change_7d']),
                 ],
             );
 
+            \Log::info("Response: " . json_encode($value));
+//
             $value = json_encode($value, true);
-
+//
             Cache::set($key, $value, 60);
 
         } else {

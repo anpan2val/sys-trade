@@ -17,7 +17,7 @@ export default function RecentPriceBtc() {
             const response = await fetch('/api/cmc');
             const data = await response.json();
             console.log(data);
-            setBtcPrice(data['data']['price']);
+            setBtcPrice(data['data_BTC']['price']);
         }
         fetchData();
 

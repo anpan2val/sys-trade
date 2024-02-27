@@ -17,7 +17,7 @@ export default function RecentPriceLunc() {
             const response = await fetch('/api/cmc');
             const data = await response.json();
             console.log(data);
-            setLuncPrice(data['data']['price']);
+            setLuncPrice(data['data_LUNC']['price']);
         }
         fetchData();
 

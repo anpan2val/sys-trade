@@ -17,7 +17,7 @@ export default function RecentPriceUstc() {
             const response = await fetch('/api/cmc');
             const data = await response.json();
             console.log(data);
-            setUstcPrice(data['data']['price']);
+            setUstcPrice(data['data_USTC']['price']);
         }
         fetchData();
 
