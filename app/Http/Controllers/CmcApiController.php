@@ -81,7 +81,7 @@ class CmcApiController extends Controller
                     'percent_change_7d' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['percent_change_7d']),
                 ],
                 'data_LUNC' => [
-                    'price' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['price'], 5),
+                    'price' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['price'], 8),
                     'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['volume_24h']),
                     'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['volume_change_24h']),
                     'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['percent_change_1h']),
@@ -89,7 +89,7 @@ class CmcApiController extends Controller
                     'percent_change_7d' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['percent_change_7d']),
                 ],
                 'data_USTC' => [
-                    'price' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['price'], 3),
+                    'price' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['price'], 5),
                     'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['volume_24h']),
                     'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['volume_change_24h']),
                     'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['percent_change_1h']),

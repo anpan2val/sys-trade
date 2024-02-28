@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\Cache;
 use \App\Libs\DateFormatter;
 
 /**
- * Class CmcApiQuotesHistoricalController
+ * Class CmcApiQuotesHistoricalBtcController
  * @package App\Http\Controllers
- * @group CmcApiQuotesHistoricalController
+ * @group CmcApiQuotesHistoricalBtcController
  * @authenticated
  * @version 1.0.0
  * APIDoc https://coinmarketcap.com/api/documentation/v1/#operation/getV3CryptocurrencyQuotesHistorical
  */
-class CmcApiQuotesHistoricalController extends Controller
+class CmcApiQuotesHistoricalBtcController extends Controller
 {
 
-    public function test()
+    public function index()
     {
         $res = Http::withHeaders([
             'X-CMC_PRO_API_KEY' => config('config_cmc.cmc_apikey'),

@@ -59,7 +59,7 @@ export default function RecentChartBtc() {
                                 fill: theme.palette.text.primary,
                             },
                             tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
-                            max: 51800,
+                            max: 62000,
                             tickNumber: 3,
                         },
                     ]}

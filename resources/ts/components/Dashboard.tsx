@@ -25,6 +25,8 @@ import RecentPriceLunc from './RecentPriceLunc';
 import RecentPriceUstc from "./RecentPriceUstc";
 import RecentPriceBtc from "./RecentPriceBtc";
 import RecentChartBtc from "./RecentChartBtc";
+import RecentChartLunc from "./RecentChartLunc";
+import RecentChartUstc from "./RecentChartUstc";
 
 function Copyright(props: any) {
   return (
@@ -209,7 +211,7 @@ export default function Dashboard() {
                   }}
                 >
                   {/* LUNC Chart */}
-                  <Chart />
+                  <RecentChartLunc />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -241,7 +243,7 @@ export default function Dashboard() {
                       }}
                   >
                       {/* USTC Chart */}
-                      <Chart />
+                      <RecentChartUstc />
                   </Paper>
               </Grid>
               {/* Recent Deposits */}
