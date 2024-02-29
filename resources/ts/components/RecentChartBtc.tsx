@@ -16,7 +16,7 @@ function createData(
 export default function RecentChartBtc() {
     const theme = useTheme();
     const [btcChartData, setBtcChartData] = useState([]);
-    let btcMaxPrice = 0;
+    const [btcMaxPrice, setBtcMaxPrice] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,11 +28,11 @@ export default function RecentChartBtc() {
             for (let i = 0; i < data.length; i++) {
                 tmp_data.push(createData(data[i]['timestamp'], data[i]['data']['price']));
 
-                if (btcMaxPrice <= data[i]['data']['price']) {
-                    btcMaxPrice = data[i]['data']['price'];
+                if (max_price <= data[i]['data']['price']) {
+                    max_price = data[i]['data']['price'];
                 }
             }
-            console.log(btcMaxPrice);
+            setBtcMaxPrice(max_price);
             setBtcChartData(tmp_data);
         }
         fetchData();
@@ -40,7 +40,7 @@ export default function RecentChartBtc() {
 
     return (
         <React.Fragment>
-            <Title>Today</Title>
+            <Title>BTC</Title>
             <div style={{width: '100%', flexGrow: 1, overflow: 'hidden'}}>
                 <LineChart
                     dataset={btcChartData}
@@ -60,14 +60,14 @@ export default function RecentChartBtc() {
                     ]}
                     yAxis={[
                         {
-                            label: 'Price ($)',
+                            label: '',
                             labelStyle: {
                                 ...(theme.typography.body1 as ChartsTextStyle),
                                 fill: theme.palette.text.primary,
                             },
                             tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
-                            max: {btcMaxPrice},
-                            tickNumber: 3,
+                            max: btcMaxPrice,
+                            tickNumber: 5,
                         },
                     ]}
                     series={[

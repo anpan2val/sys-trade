@@ -3,7 +3,7 @@ import {useTheme} from '@mui/material/styles';
 import {LineChart, axisClasses} from '@mui/x-charts';
 import {ChartsTextStyle} from '@mui/x-charts/ChartsText';
 import Title from './Title';
-import {useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 // Generate Sales Data
 function createData(
@@ -16,16 +16,23 @@ function createData(
 export default function RecentChartLunc() {
     const theme = useTheme();
     const [luncChartData, setLuncChartData] = useState([]);
+    const [luncMaxPrice, setLuncMaxPrice] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('/api/cmc_lunc');
             const data = await response.json();
 
+            let max_price = 0;
             const tmp_data = [];
             for (let i = 0; i < data.length; i++) {
                 tmp_data.push(createData(data[i]['timestamp'], data[i]['data']['price']));
+
+                if (max_price <= data[i]['data']['price']) {
+                    max_price = data[i]['data']['price'];
+                }
             }
+            setLuncMaxPrice(max_price);
             setLuncChartData(tmp_data);
         }
         fetchData();
@@ -33,7 +40,7 @@ export default function RecentChartLunc() {
 
     return (
         <React.Fragment>
-            <Title>Today</Title>
+            <Title>LUNC</Title>
             <div style={{width: '100%', flexGrow: 1, overflow: 'hidden'}}>
                 <LineChart
                     dataset={luncChartData}
@@ -53,14 +60,14 @@ export default function RecentChartLunc() {
                     ]}
                     yAxis={[
                         {
-                            label: 'Price ($)',
+                            label: '',
                             labelStyle: {
                                 ...(theme.typography.body1 as ChartsTextStyle),
                                 fill: theme.palette.text.primary,
                             },
                             tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
-                            max: 0.000140000,
-                            tickNumber: 3,
+                            max: luncMaxPrice,
+                            tickNumber: 5,
                         },
                     ]}
                     series={[
