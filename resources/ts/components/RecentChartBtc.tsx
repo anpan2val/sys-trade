@@ -16,16 +16,23 @@ function createData(
 export default function RecentChartBtc() {
     const theme = useTheme();
     const [btcChartData, setBtcChartData] = useState([]);
+    let btcMaxPrice = 0;
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('/api/cmc_btc');
             const data = await response.json();
 
+            let max_price = 0;
             const tmp_data = [];
             for (let i = 0; i < data.length; i++) {
                 tmp_data.push(createData(data[i]['timestamp'], data[i]['data']['price']));
+
+                if (btcMaxPrice <= data[i]['data']['price']) {
+                    btcMaxPrice = data[i]['data']['price'];
+                }
             }
+            console.log(btcMaxPrice);
             setBtcChartData(tmp_data);
         }
         fetchData();
@@ -59,7 +66,7 @@ export default function RecentChartBtc() {
                                 fill: theme.palette.text.primary,
                             },
                             tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
-                            max: 62000,
+                            max: {btcMaxPrice},
                             tickNumber: 3,
                         },
                     ]}
