@@ -4,20 +4,18 @@ import Typography from '@mui/material/Typography';
 import Title from './Title';
 import {useEffect, useState } from 'react';
 
-function preventDefault(event: React.MouseEvent) {
-  event.preventDefault();
-}
-
 export default function RecentPriceBtc() {
 
     const [btcPrice, setBtcPrice] = useState('Loading...');
+    const [cmcRank, setCmcRank] = useState('Loading...');
+    const cmcPage = 'https://coinmarketcap.com/currencies/bitcoin/';
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('/api/cmc');
             const data = await response.json();
-            console.log(data);
             setBtcPrice(data['data_BTC']['price']);
+            setCmcRank(data['data_BTC']['cmc_rank']);
         }
         fetchData();
 
@@ -25,16 +23,16 @@ export default function RecentPriceBtc() {
 
     return (
     <React.Fragment>
-      <Title>BTC Price</Title>
+      <Title>BTC Info</Title>
       <Typography component="p" variant="h4">
         ${btcPrice}
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
-
+        CoinMarketCap Rank #{cmcRank}
       </Typography>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
+        <Link target="_blank" color="primary" href={cmcPage}>
+          View CMC Details
         </Link>
       </div>
     </React.Fragment>

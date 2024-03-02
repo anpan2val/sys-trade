@@ -74,6 +74,7 @@ class CmcApiController extends Controller
             $value = array(
                 'data_BTC' => [
                     'price' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['price']),
+                    'cmc_rank' => $res['data'][$id_btc]['cmc_rank'],
                     'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['volume_24h']),
                     'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['volume_change_24h']),
                     'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_btc]['quote']['USD']['percent_change_1h']),
@@ -82,6 +83,7 @@ class CmcApiController extends Controller
                 ],
                 'data_LUNC' => [
                     'price' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['price'], 8),
+                    'cmc_rank' => $res['data'][$id_lunc]['cmc_rank'],
                     'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['volume_24h']),
                     'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['volume_change_24h']),
                     'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_lunc]['quote']['USD']['percent_change_1h']),
@@ -90,6 +92,7 @@ class CmcApiController extends Controller
                 ],
                 'data_USTC' => [
                     'price' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['price'], 5),
+                    'cmc_rank' => $res['data'][$id_ustc]['cmc_rank'],
                     'volume_24h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['volume_24h']),
                     'volume_change_24h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['volume_change_24h']),
                     'percent_change_1h' => NumberFormatter::truncateNumber($res['data'][$id_ustc]['quote']['USD']['percent_change_1h']),

@@ -4,20 +4,18 @@ import Typography from '@mui/material/Typography';
 import Title from './Title';
 import {useEffect, useState} from 'react';
 
-function preventDefault(event: React.MouseEvent) {
-  event.preventDefault();
-}
-
 export default function RecentPriceLunc() {
 
     const [luncPrice, setLuncPrice] = useState('Loading...');
+    const [cmcRank, setCmcRank] = useState('Loading...');
+    const cmcPage = 'https://coinmarketcap.com/currencies/terra-luna/';
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('/api/cmc');
             const data = await response.json();
-            console.log(data);
             setLuncPrice(data['data_LUNC']['price']);
+            setCmcRank(data['data_LUNC']['cmc_rank']);
         }
         fetchData();
 
@@ -25,16 +23,16 @@ export default function RecentPriceLunc() {
 
     return (
         <React.Fragment>
-            <Title>Lunc Price</Title>
+            <Title>LUNC Info</Title>
             <Typography component="p" variant="h4">
                 ${luncPrice}
             </Typography>
             <Typography color="text.secondary" sx={{ flex: 1 }}>
-
+                CoinMarketCap Rank #{cmcRank}
             </Typography>
             <div>
-                <Link color="primary" href="#" onClick={preventDefault}>
-                    View balance
+                <Link target="_blank" color="primary" href={cmcPage}>
+                    View CMC Details
                 </Link>
             </div>
         </React.Fragment>
