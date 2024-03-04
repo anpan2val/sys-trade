@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -10,38 +11,42 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
+const navigate = useNavigate();
+
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton onClick={() => navigate('/test')}>
+    {/*<ListItemButton>*/}
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Chart" />
     </ListItemButton>
     {/*<ListItemButton>*/}
-    {/*  <ListItemIcon>*/}
-    {/*    <ShoppingCartIcon />*/}
-    {/*  </ListItemIcon>*/}
-    {/*  <ListItemText primary="Orders" />*/}
-    {/*</ListItemButton>*/}
-    {/*<ListItemButton>*/}
-    {/*  <ListItemIcon>*/}
-    {/*    <PeopleIcon />*/}
-    {/*  </ListItemIcon>*/}
-    {/*  <ListItemText primary="Customers" />*/}
-    {/*</ListItemButton>*/}
+    <ListItemButton onClick={() => navigate('/')}>
+        <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Orders" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Customers" />
+    </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Governance" />
     </ListItemButton>
-    {/*<ListItemButton>*/}
-    {/*  <ListItemIcon>*/}
-    {/*    <LayersIcon />*/}
-    {/*  </ListItemIcon>*/}
-    {/*  <ListItemText primary="Integrations" />*/}
-    {/*</ListItemButton>*/}
+    <ListItemButton>
+      <ListItemIcon>
+        <LayersIcon />
+      </ListItemIcon>
+      <ListItemText primary="Integrations" />
+    </ListItemButton>
   </React.Fragment>
 );
 
