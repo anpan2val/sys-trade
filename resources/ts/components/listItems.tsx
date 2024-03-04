@@ -30,12 +30,12 @@ export const mainListItems = (
     {/*  </ListItemIcon>*/}
     {/*  <ListItemText primary="Customers" />*/}
     {/*</ListItemButton>*/}
-    {/*<ListItemButton>*/}
-    {/*  <ListItemIcon>*/}
-    {/*    <BarChartIcon />*/}
-    {/*  </ListItemIcon>*/}
-    {/*  <ListItemText primary="Reports" />*/}
-    {/*</ListItemButton>*/}
+    <ListItemButton>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Governance" />
+    </ListItemButton>
     {/*<ListItemButton>*/}
     {/*  <ListItemIcon>*/}
     {/*    <LayersIcon />*/}
