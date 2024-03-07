@@ -11,12 +11,12 @@ $ docker-compose up -d
 ## Local server
 
 ```
-# enter container
+# enter container ex)dive to app container
 $ docker compose exec dev-app bash
 
 # start server
 $ npm run dev
 ```
 
-## access localhost
+## Access localhost
 http://localhost
