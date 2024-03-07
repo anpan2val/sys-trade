@@ -8,7 +8,7 @@ $ docker compose build --no-cache
 $ docker-compose up -d
 ```
 
-## local server
+## Local server
 
 ```
 # enter container
