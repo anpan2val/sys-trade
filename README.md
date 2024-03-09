@@ -1,5 +1,5 @@
-# local development
-## Docker Compose
+# Local development
+## Docker Build (with docker-compose)
 ```
 # build
 $ docker compose build --no-cache
